@@ -1,7 +1,7 @@
 const { prisma } = require('@prisma/client');
 const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken");
-import { APP_SECRET } from '../utils';
+const { APP_SECRET } = require('../utils');
 
 // ユーザー新規登録のリゾルバ
 const signUp = async (parent, args, context) => {
@@ -58,7 +58,7 @@ const post = async (parent, args, context) => {
   });
 };
 
-modules.exports = {
+module.exports = {
   signUp,
   login,
   post,
