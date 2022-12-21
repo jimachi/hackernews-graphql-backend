@@ -16,7 +16,7 @@ const signUp = async (parent, args, context) => {
     }
   });
 
-  const token = jwt.sign({ userId: user.id, APP_SECRET });
+  const token = jwt.sign({ userId: user.id }, APP_SECRET);
 
   return {
     token,
