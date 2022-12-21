@@ -1,8 +1,7 @@
 const { prisma } = require('@prisma/client');
 const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken");
-
-const APP_SECRET = "Graphql";
+import { APP_SECRET } from '../utils';
 
 // ユーザー新規登録のリゾルバ
 const signUp = async (parent, args, context) => {
@@ -47,7 +46,20 @@ const login = async (parent, args, context) => {
   }
 };
 
+// ニュースを投稿するリゾルバ
+const post = async (parent, args, context) => {
+  const { userId } = context;
+  return await context.prisma.link.create({
+    data: {
+      url: args.url,
+      description: args.description,
+      postedBy: { connect: { id: userId }}
+    },
+  });
+};
+
 modules.exports = {
   signUp,
   login,
+  post,
 };
