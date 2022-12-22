@@ -50,13 +50,19 @@ const login = async (parent, args, context) => {
 // ニュースを投稿するリゾルバ
 const post = async (parent, args, context) => {
   const { userId } = context;
-  return await context.prisma.link.create({
+
+  const newLink = await context.prisma.link.create({
     data: {
       url: args.url,
       description: args.description,
       postedBy: { connect: { id: userId }}
     },
   });
+
+  // 送信
+  context.pubsub.publish("NEW_LINK", newLink);
+
+  return newLink;
 };
 
 module.exports = {

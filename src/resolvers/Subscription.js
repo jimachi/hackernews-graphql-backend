@@ -1,5 +1,5 @@
 const newLinkSubscribe = (parent, args, context) => {
-  return context.pubsub.asyncIterator("New_LINK");
+  return context.pubsub.asyncIterator("NEW_LINK");
 };
 
 const newLink = {

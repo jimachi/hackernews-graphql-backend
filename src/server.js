@@ -7,6 +7,7 @@ const { getUserId } = require("./utils");
 
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
+const Subscription = require('./resolvers/Subscription');
 const Link = require('./resolvers/Link');
 const User = require('./resolvers/User');
 
@@ -21,8 +22,9 @@ const pubsub = new PubSub();
 const resolvers = {
   Query,
   Mutation,
+  Subscription,
   Link,
-  User
+  User,
 };
 
 const server = new ApolloServer({
