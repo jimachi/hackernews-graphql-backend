@@ -8,5 +8,5 @@ const newLink = {
 };
 
 module.exports = {
-  newLinkSubscribe
+  newLink,
 };
