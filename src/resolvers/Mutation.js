@@ -68,19 +68,6 @@ const post = async (parent, args, context) => {
 const vote = async (parent, args, context) => {
   const { userId } = context;
 
-  const vote = context.prisma.vote.findUnique({
-    where: {
-      linkId_userId: {
-        linkId: Number(args.linkId),
-        userId: userId,
-      }
-    }
-  });
-
-  if (Boolean(vote)) {
-    throw new Error(`既に投票されています: ${args.linkId}`);
-  }
-
   const newVote = context.prisma.vote.create({
     data: {
       user: { connect: { id: userId }},
